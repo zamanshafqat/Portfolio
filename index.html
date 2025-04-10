@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malik Zaman Dogar | Portfolio</title>
+    <style>
+        /* Global Styles */
+        :root {
+            /* Light Mode Colors */
+            --light-primary-color: #2563eb;
+            --light-secondary-color: #1e40af;
+            --light-background-color: #f8fafc;
+            --light-text-color: #334155;
+            --light-heading-color: #1e293b;
+            --light-accent: #e0e7ff;
+            --light-card-bg: white;
+            --light-nav-bg: white;
+            --light-footer-bg: #0f172a;
+            --light-footer-text: rgba(255, 255, 255, 0.7);
+            --light-border-color: #e5e7eb;
+            
+            /* Dark Mode Colors */
+            --dark-primary-color: #3b82f6;
+            --dark-secondary-color: #60a5fa;
+            --dark-background-color: #0f172a;
+            --dark-text-color: #e2e8f0;
+            --dark-heading-color: #f8fafc;
+            --dark-accent: #1e293b;
+            --dark-card-bg: #1e293b;
+            --dark-nav-bg: #0f172a;
+            --dark-footer-bg: #020617;
+            --dark-footer-text: rgba(255, 255, 255, 0.7);
+            --dark-border-color: #334155;
+        }
+        
+        html.light-mode {
+            --primary-color: var(--light-primary-color);
+            --secondary-color: var(--light-secondary-color);
+            --background-color: var(--light-background-color);
+            --text-color: var(--light-text-color);
+            --heading-color: var(--light-heading-color);
+            --accent: var(--light-accent);
+            --card-bg: var(--light-card-bg);
+            --nav-bg: var(--light-nav-bg);
+            --footer-bg: var(--light-footer-bg);
+            --footer-text: var(--light-footer-text);
+            --border-color: var(--light-border-color);
+        }
+        
+        html.dark-mode {
+            --primary-color: var(--dark-primary-color);
+            --secondary-color: var(--dark-secondary-color);
+            --background-color: var(--dark-background-color);
+            --text-color: var(--dark-text-color);
+            --heading-color: var(--dark-heading-color);
+            --accent: var(--dark-accent);
+            --card-bg: var(--dark-card-bg);
+            --nav-bg: var(--dark-nav-bg);
+            --footer-bg: var(--dark-footer-bg);
+            --footer-text: var(--dark-footer-text);
+            --border-color: var(--dark-border-color);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--heading-color);
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Toggle Switch */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            margin-left: 2rem;
+        }
+        
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--accent);
+            transition: .4s;
+            border-radius: 30px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+        
+        .slider-icon {
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            transition: color 0.3s ease;
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            max-width: 600px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .secondary-btn {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .secondary-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        /* About Section */
+        #about {
+            padding: 5rem 0;
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .skills {
+            margin-top: 2rem;
+        }
+        
+        .skill-groups {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .skill-group {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--accent);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Education Section */
+        #education {
+            padding: 5rem 0;
+            background-color: var(--card-bg);
+            transition: background-color 0.3s ease;
+        }
+        
+        .education-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color 0.3s ease;
+        }
+        
+        .education-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-date {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .coursework {
+            margin-top: 1rem;
+        }
+        
+        .coursework-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Projects Section */
+        #projects {
+            padding: 5rem 0;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .project-img img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-tag {
+            background-color: var(--accent);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Experience Section */
+        #experience {
+            padding: 5rem 0;
+            background-color: var(--card-bg);
+            transition: background-color 0.3s ease;
+        }
+        
+        .experience-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .company {
+            font-weight: 500;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        
+        .experience-date {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+        
+        .responsibilities {
+            list-style-type: none;
+            margin-top: 1rem;
+        }
+        
+        .responsibilities li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .responsibilities li:before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            transition: color 0.3s ease;
+        }
+        
+        /* Awards Section */
+        #awards {
+            padding: 5rem 0;
+        }
+        
+        .awards-list {
+            list-style-type: none;
+        }
+        
+        .award-item {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .award-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .award-details {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        /* Contact Section */
+        #contact {
+            padding: 5rem 0;
+            background-color: var(--footer-bg);
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        
+        #contact h2 {
+            color: white;
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-links {
+            margin-top: 2rem;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .contact-link i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--nav-bg);
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .nav-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="nav-container">
+                    <div class="logo">Malik<span>Dogar</span></div>
+                    <div class="menu-toggle" id="menu-toggle">☰</div>
+                </div>
+                <div class="nav-links" id="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#education">Education</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#awards">Awards</a>
+                    <a href="#contact">Contact</a>
+                    <div class="theme-switch-wrapper">
+                        <span class="slider-icon">🌙</span>
+                        <label class="theme-switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="slider-icon">☀️</span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm <span style="color: var(--primary-color);">Malik Zaman Dogar</span></h1>
+                <p>Computer Science student with a strong foundation in programming, data analysis, and software development. Passionate about leveraging AI and data-driven solutions to optimize efficiency and scalability.</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn">View Projects</a>
+                    <a href="#contact" class="btn secondary-btn">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a Computer Science student at the University of Calgary with a minor in Data Science. I'm passionate about building applications that solve real-world problems using various technologies. My interests include software development, data analysis, and exploring the potential of AI to create efficient and scalable solutions.</p>
+                    <p>With a strong foundation in programming and data structures, I continually seek to expand my skills and knowledge. I enjoy tackling challenging problems and collaborating with others to create innovative solutions.</p>
+                    
+                    <div class="skills">
+                        <h3>Skills & Expertise</h3>
+                        <div class="skill-groups">
+                            <div class="skill-group">
+                                <h4>Programming Languages</h4>
+                                <div class="skill-list">
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">C++</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">HTML/CSS</span>
+                                    <span class="skill-tag">MATLAB</span>
+                                </div>
+                            </div>
+                            <div class="skill-group">
+                                <h4>Frameworks & Libraries</h4>
+                                <div class="skill-list">
+                                    <span class="skill-tag">JavaFX</span>
+                                    <span class="skill-tag">React.js</span>
+                                </div>
+                            </div>
+                            <div class="skill-group">
+                                <h4>Tools & Technologies</h4>
+                                <div class="skill-list">
+                                    <span class="skill-tag">PyCharm</span>
+                                    <span class="skill-tag">IntelliJ</span>
+                                    <span class="skill-tag">Eclipse</span>
+                                    <span class="skill-tag">Jupyter Notebooks</span>
+                                    <span class="skill-tag">Git</span>
+                                    <span class="skill-tag">Visual Studio</span>
+                                    <span class="skill-tag">OpenRefine</span>
+                                    <span class="skill-tag">Tableau</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-item">
+                <div class="education-header">
+                    <h3>Bachelor of Science Honors, Computer Science</h3>
+                    <span class="education-date">Sep 2023 - Present</span>
+                </div>
+                <div class="company">University of Calgary, Alberta</div>
+                <p>Minor in Data Science</p>
+                <p>GPA: 3.63/4.00, <em>Dean's List</em></p>
+                
+                <div class="coursework">
+                    <h4>Related Coursework:</h4>
+                    <div class="coursework-list">
+                        <span class="skill-tag">Data Structures & Algorithms</span>
+                        <span class="skill-tag">Object-Oriented Programming</span>
+                        <span class="skill-tag">Thinking with Data</span>
+                        <span class="skill-tag">Principles of Cybersecurity and Data Privacy</span>
+                        <span class="skill-tag">C++ Programming</span>
+                        <span class="skill-tag">Introduction to Software Engineering</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="Movie.jpeg" alt="Movie Recommender System" />
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Movie Recommender System</h3>
+                        <p>Developed an interactive movie recommender system with Streamlit, using Python, scikit-learn for similarity calculations, and NumPy/Pandas for data cleaning and processing across 5,000 TMDB movies.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">scikit-learn</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="fitness.png" alt="Fitness Club App" />
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Fitness Club App</h3>
+                        <p>Developed a Java/JavaFX fitness app using OOP principles to log activity and provide performance insights.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">JavaFX</span>
+                            <span class="tech-tag">OOP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="Data-Analyst.jpg" alt="Seoul Bike Sharing Analysis" />
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Seoul Bike Sharing Analysis</h3>
+                        <p>Conducted in-depth analysis on bike rentals in an urban center, leveraging data cleaning and visualization techniques to generate actionable insights for a bike share launch.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Data Analysis</span>
+                            <span class="tech-tag">Data Visualization</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Advanced Coder - AI Training</h3>
+                    <span class="experience-date">Dec 2024 - Present</span>
+                </div>
+                <div class="company">Outlier, San Francisco, United States</div>
+                <ul class="responsibilities">
+                    <li>Fine-tuned Large Language models through prompt engineering and rating responses for accuracy and relevancy.</li>
+                    <li>Refined and rewrote 200+ AI generated solutions, improving model accuracy and output precision.</li>
+                    <li>Identified prompts likely to trigger hallucinations and then guided the model toward the correct answer through a step-by-step process.</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Data Analyst</h3>
+                    <span class="experience-date">May 2024 - Aug 2024</span>
+                </div>
+                <div class="company">Sunrise Paints, Lahore, Pakistan</div>
+                <ul class="responsibilities">
+                    <li>Streamlined data cleaning and transformation processes, improving dataset accuracy and consistency, resulting in a 20% reduction in analysis time.</li>
+                    <li>Conducted exploratory data analysis (EDA) using Excel, Tableau, Python and SQL on multiple datasets, uncovering key trends and creating visualizations that led to actionable insights for business strategies.</li>
+                    <li>Collaborated with teams to gather data requirements and provide insights, driving a 15% improvement in business performance metrics.</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Full-stack Developer (Open-Source Contribution)</h3>
+                    <span class="experience-date">Sep 2024 - Present</span>
+                </div>
+                <div class="company">Odin Project</div>
+                <ul class="responsibilities">
+                    <li>Built foundational web development skills in HTML, CSS, JavaScript, and backend technologies through practical projects.</li>
+                    <li>Designed web-based projects like a calculator app and personal portfolio site.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards">
+        <div class="container">
+            <h2>Awards & Achievements</h2>
+            <ul class="awards-list">
+                <li class="award-item">
+                    <div class="award-title">Dean's List 2023-2024</div>
+                    <div class="award-details">
+                        <span>University of Calgary</span>
+                        <span>Calgary, Alberta</span>
+                    </div>
+                </li>
+                <li class="award-item">
+                    <div class="award-title">President's Admission Scholarship 2023</div>
+                    <div class="award-details">
+                        <span>University of Calgary</span>
+                        <span>Calgary, Alberta</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>I'm always open to new opportunities, collaborations, or just a friendly chat about technology and programming. Feel free to reach out through any of the following channels:</p>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:zaman.dogar@ucalgary.ca" class="contact-link">
+                            <i>📧</i>
+                            <span>zaman.dogar@ucalgary.ca</span>
+                        </a>
+                        <a href="tel:+18257479135" class="contact-link">
+                            <i>📱</i>
+                            <span>(825) 747-9135</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/zamanshafqat/" target="_blank" class="contact-link">
+                            <i>💼</i>
+                            <span>linkedin.com/in/zamanshafqat</span>
+                        </a>
